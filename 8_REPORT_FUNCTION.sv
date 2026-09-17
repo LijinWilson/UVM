@@ -42,6 +42,9 @@ class test extends  uvm_test;
   // registering to factory;
   `uvm_component_utils(test);
 
+  // Assigning property
+  int a = 50;
+
   // overriding the virtual constructor
   function new(string name = "test", uvm_component parent);
     super.new(name, parent);
@@ -57,6 +60,9 @@ class test extends  uvm_test;
 
     // using MACROS (comment vitual function and try)
     `uvm_info(get_type_name,"printing from build_phase",UVM_NONE);
+
+    // printing property a using macros
+    `uvm_info(get_type_name, $sformatf("The value of A is %0d", a), UVM_NONE);
 
   endfunction
 
@@ -91,6 +97,9 @@ endmodule
 
 // USING MACROS:
 # KERNEL: UVM_INFO /home/runner/testbench.sv(19) @ 0: uvm_test_top [test] printing from build_phase
+
+// USING MACROS TO PRINT PROPERTY
+# KERNEL: UVM_INFO /home/runner/testbench.sv(21) @ 0: uvm_test_top [test] the value of a is               50
 
 
 
