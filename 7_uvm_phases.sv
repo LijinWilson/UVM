@@ -287,3 +287,13 @@ Scenario,Signal Example,Why Set It Before Reset?
  * Do basic DUT initialization (e.g., configure registers)
  * Make sure DUT is ready to accept transactions
 */
+
+
+  // SOME NOTE - CONFIGURATION PHASE
+  /*
+  Phase Type | Phase Name | Purpose | Execution Flow
+1. function | extract,"Gathers data from scoreboards and coverage monitors, computing any necessary statistics for the reporting stage.",Bottom to top
+2. function | check,Verifies the behavior of the Device Under Test (DUT) and flags any errors that happened during the test run.,Bottom to top
+3. function | report,Outputs the final simulation results to the console or logs them into a file.,Bottom to top
+4. function | final,Wraps up any remaining tasks or pending actions before the testbench completely finishes.,Top to down
+  */
