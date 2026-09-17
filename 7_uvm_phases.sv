@@ -30,6 +30,16 @@ endfunction
   task run_phase(uvm_phase phase);
     super.run_phase(phase);
 
+    // Raising objection and after 10 time unit we are dropping the objection
+    phase.rais_objection(this);
+    `uvm_info("RUN PHASE", "RUN PHASE OBJECTION CALLED FROM DRIVER CLASS", UVM_LOW);
+
+    #10;
+    
+    phase.drop_objection(this);
+    `uvm_info("RUN PHASE", "RUN PHASE HAS DROPPED OBJECTION FROM DRIVER CLASS", UVM_LOW);
+    
+    // this is an indicator/message that this phase has called the run phase from driver class
     `uvm_info("RUN PHASE", "RUN PHASE CALLED FROM DRIVER CLASS", UVM_LOW);
   endtask
   
@@ -63,6 +73,15 @@ endfunction
   // RUN PHASE
   task run_phase(uvm_phase phase);
     super.run_phase(phase);
+
+// Raising objection and after 50 time unit we are dropping the objection
+    phase.rais_objection(this);
+    `uvm_info("RUN PHASE", "RUN PHASE OBJECTION CALLED FROM MONITOR CLASS", UVM_LOW);
+
+    #50;
+    
+    phase.drop_objection(this);
+    `uvm_info("RUN PHASE", "RUN PHASE HAS DROPPED OBJECTION FROM MONITOR CLASS", UVM_LOW);
 
     `uvm_info("RUN PHASE", "RUN PHASE CALLED FROM MONITOR CLASS", UVM_LOW);
   
