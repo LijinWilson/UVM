@@ -32,19 +32,19 @@ class monitor extends uvm_monitor;
 		super.run_phase(phase);
 
 		forever begin
-			@(posedge inf.clk);
+			@(inf.mon_cb);
 			get_from_DUT();
 		end
 	endtask
 
 	task get_from_DUT();
 		txn = transaction::type_id::create("txn");
-		txn.j = inf.j;
-		txn.k = inf.k;
-		txn.rst = inf.rst;
-		txn.q = inf.q;
-		txn.q_bar = inf.q_bar;
-		@(posedge inf.clk);
+		txn.j = inf.mon_cb.j;
+		txn.k = inf.mon_cb.k;
+		txn.rst = inf.mon_cb.rst;
+		txn.q = inf.mon_cb.q;
+		txn.q_bar = inf.mon_cb.q_bar;
+		// @(posedge inf.clk);
 		send.write(txn);
 	endtask
 
